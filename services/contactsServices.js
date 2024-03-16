@@ -65,15 +65,6 @@ export async function updateContact(id, body) {
 }
 
 /*
-module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-  updateContact,
-};*/
-
-/*
 npm install
     S або --save – модуль встановлюється як основна залежність. Значить, що модуль необхідний для нормального функціонування програми.
     D або --save-dev – означає, що модуль встановиться як додаткова залежність. В основному модуль потрібний для розробки і в ньому немає необхідності під час роботи програми.

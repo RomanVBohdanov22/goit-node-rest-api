@@ -5,7 +5,7 @@ import {
   deleteContact,
   createContact,
   updateContact,
-} from "../controllers/contactsControllers.js";
+} from "../../goit-node-rest-api/controllers/contactsControllers.js";
 
 import {
   createContactSchema,
@@ -20,10 +20,6 @@ contactsRouter.get("/", getAllContacts);
 contactsRouter.get("/:id", getOneContact);
 
 contactsRouter.delete("/:id", deleteContact);
-
-//contactsRouter.post("/", createContact);
-
-//contactsRouter.put("/:id", updateContact);
 
 contactsRouter.post("/", validateBody(createContactSchema), createContact);
 
