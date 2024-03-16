@@ -10,8 +10,8 @@ import {
 import {
   createContactSchema,
   updateContactSchema,
-} from "../../schemas/contactsSchemas.js";
-import validateBody from "../../helpers/validateBody.js";
+} from "../../goit-node-rest-api/schemas/contactsSchemas.js";
+import validateBody from "../../goit-node-rest-api/helpers/validateBody.js";
 
 const contactsRouter = express.Router();
 

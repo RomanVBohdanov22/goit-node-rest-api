@@ -1,11 +1,11 @@
 //У файл `contactsServices.js` (знаходиться в папці `services`)
 // скопіюй функції з файла `contacts.js` з домашнього завдання до модуля 1.
 
-const fs = require("fs/promises");
-const { nanoid } = require("nanoid");
-const path = require("path");
-const { dirname } = require("path");
-const { fileURLToPath } = require("url");
+import fs from "fs/promises";
+import path from "path";
+import { nanoid } from "nanoid";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,13 +13,13 @@ const __dirname = dirname(__filename);
 const contactsPath = path.join(__dirname, "../db/contacts.json");
 
 //переписав деякі функції як стрілкові
-const listContacts = async () => {
+export const listContacts = async () => {
   // Повертає масив контактів.
   const data = await fs.readFile(contactsPath, "utf-8");
   return JSON.parse(data);
 };
 
-const getContactById = async (contactId) => {
+export const getContactById = async (contactId) => {
   // Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
   const data = await listContacts();
   const result = data.find((item) => item.id === contactId);
@@ -27,7 +27,7 @@ const getContactById = async (contactId) => {
 };
 
 // Залишу класичний запис function
-async function removeContact(contactId) {
+export async function removeContact(contactId) {
   // Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
   const data = await listContacts();
   const index = data.findIndex((item) => item.id === contactId);
@@ -39,7 +39,7 @@ async function removeContact(contactId) {
   return result;
 }
 
-async function addContact(name, email, phone) {
+export async function addContact(name, email, phone) {
   //Повертає об'єкт доданого контакту (з id).
   const data = await listContacts();
   const newContact = {
@@ -53,7 +53,7 @@ async function addContact(name, email, phone) {
   return newContact;
 }
 
-async function updateContact(id, body) {
+export async function updateContact(id, body) {
   const data = await listContacts();
   const index = data.findIndex((item) => item.id === id);
   if (index === -1) {
@@ -64,13 +64,14 @@ async function updateContact(id, body) {
   return data[index];
 }
 
+/*
 module.exports = {
   listContacts,
   getContactById,
   removeContact,
   addContact,
   updateContact,
-};
+};*/
 
 /*
 npm install
