@@ -7,7 +7,10 @@ const path = require("path");
 const { dirname } = require("path");
 const { fileURLToPath } = require("url");
 
-const contactsPath = path.join(__dirname, "db/contacts.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const contactsPath = path.join(__dirname, "../db/contacts.json");
 
 //переписав деякі функції як стрілкові
 const listContacts = async () => {
