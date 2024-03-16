@@ -1,4 +1,6 @@
-import contactsService from "../services/contactsServices.js";
+//import contactsService from "../services/contactsServices.js";
+const contactsService = require("../services/contactsServices");
+import HttpError from "../helpers/HttpError.js";
 
 export const getAllContacts = (req, res) => {};
 
@@ -9,3 +11,5 @@ export const deleteContact = (req, res) => {};
 export const createContact = (req, res) => {};
 
 export const updateContact = (req, res) => {};
+
+//node app.js
