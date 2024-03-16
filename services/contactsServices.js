@@ -1,16 +1,12 @@
 //У файл `contactsServices.js` (знаходиться в папці `services`)
 // скопіюй функції з файла `contacts.js` з домашнього завдання до модуля 1.
-/**
- "dependencies": {
-    "commander": "^12.0.0",
-    "nanoid": "^3.3.4"
-  }
-}
- */
 
 const fs = require("fs/promises");
-const path = require("path");
 const { nanoid } = require("nanoid");
+const path = require("path");
+const { dirname } = require("path");
+const { fileURLToPath } = require("url");
+
 const contactsPath = path.join(__dirname, "db/contacts.json");
 
 //переписав деякі функції як стрілкові
