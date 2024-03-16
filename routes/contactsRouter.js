@@ -5,8 +5,8 @@ import {
   deleteContact,
   createContact,
   updateContact,
-} from "../../goit-node-rest-api/controllers/contactsControllers.js";
-
+} from "../../goit-node-rest-api/controllers/contactsControllers.js"; //"../../goit-node-rest-api/controllers/contactsControllers.js"
+//import {} from "../controllers/contactsControllers.js";
 import {
   createContactSchema,
   updateContactSchema,
