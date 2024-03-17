@@ -5,14 +5,15 @@ import {
   deleteContact,
   createContact,
   updateContact,
-} from "../../goit-node-rest-api/controllers/contactsControllers.js";
-//import {} from "../../controllers/contactsControllers.js"; чомусь не прцює!
+} from "../controllers/contactsControllers.js";
+
 import {
   createContactSchema,
   updateContactSchema,
 } from "../../goit-node-rest-api/schemas/contactsSchemas.js";
-import validateBody from "../../goit-node-rest-api/helpers/validateBody.js";
-//import {} from "../../helpers/validateBody.js"; чомусь не прцює!
+
+import validateBody from "../helpers/validateBody.js";
+
 const contactsRouter = express.Router();
 
 contactsRouter.get("/", getAllContacts);

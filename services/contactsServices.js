@@ -59,11 +59,26 @@ export async function updateContact(id, body) {
   if (index === -1) {
     return null;
   }
-  data[index] = { id, ...body };
+  const { name, email, phone } = { ...body };
+  if (name === undefined && email === undefined && phone === undefined)
+    return JSON.stringify({ message: "Body must have at least one field" });
+  if (name === undefined) name = data[index].name;
+  if (email === undefined) email = data[index].email;
+  if (phone === undefined) email = data[index].phone;
+  data[index] = { id, name, email, phone };
   await fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
   return data[index];
 }
+/*
+/*
+❌ Якщо при запиті на редагування контакта (PUT) якесь із полів не передане, 
+воно має зберегтись у контакта зі значенням, яке було до оновлення.
 
+❌ Якщо запит на оновлення здійснено без передачі в body хоча б одного поля, 
+має повертатись json формату {""message"": ""Body must have at least one field""} 
+зі статусом 400.
+
+*/
 /*
 npm install
     S або --save – модуль встановлюється як основна залежність. Значить, що модуль необхідний для нормального функціонування програми.
