@@ -59,13 +59,7 @@ export async function updateContact(id, body) {
   if (index === -1) {
     return null;
   }
-  const { name, email, phone } = { ...body };
-  if (name === undefined && email === undefined && phone === undefined)
-    return JSON.stringify({ message: "Body must have at least one field" });
-  if (name === undefined) name = data[index].name;
-  if (email === undefined) email = data[index].email;
-  if (phone === undefined) email = data[index].phone;
-  data[index] = { id, name, email, phone };
+  data[index] = { ...data[index], ...body };
   await fs.writeFile(contactsPath, JSON.stringify(data, null, 2));
   return data[index];
 }
