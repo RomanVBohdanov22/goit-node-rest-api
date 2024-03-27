@@ -1,16 +1,15 @@
-//import * as contactsServices from "../services/contactsServices.js";
 import HttpError from "../helpers/HttpError.js";
 import { Contact } from "../models/contacts.js";
 import { ctrlWrapper } from "../helpers/ctrlWrapper.js";
 
 const getAllContacts = async (req, res, next) => {
-  const result = await contactsServices.listContacts();
+  const result = await Contact.find();
   res.json(result);
 };
 
 const getOneContact = async (req, res, next) => {
   const { id } = req.params;
-  const result = await contactsServices.getContactById(id);
+  const result = await Contact.findById(id);
   if (!result) {
     throw HttpError(404);
   }
@@ -19,7 +18,7 @@ const getOneContact = async (req, res, next) => {
 
 const deleteContact = async (req, res, next) => {
   const { id } = req.params;
-  const result = await contactsServices.removeContact(id);
+  const result = await Contact.findByIdAndDelete(id);
   if (result === null) {
     throw HttpError(404, "Contact not found");
   }
@@ -27,8 +26,7 @@ const deleteContact = async (req, res, next) => {
 };
 
 const createContact = async (req, res, next) => {
-  const { name, email, phone } = req.body;
-  const result = await contactsServices.addContact(name, email, phone);
+  const result = await Contact.create(req.body);
   if (!result) {
     throw HttpError(404);
   }
@@ -38,15 +36,14 @@ const createContact = async (req, res, next) => {
 const updateContact = async (req, res, next) => {
   const { id } = req.params;
   const emptyBody = Object.keys(req.body).length === 0;
+
   if (emptyBody) throw HttpError(400, "Body must have at least one field");
+
   const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
+
   if (!result) throw HttpError(404);
+
   res.json(result);
-  /*const result = await contactsServices.updateContact(id, req.body);
-  if (!result) {
-    throw HttpError(404, "Contact not found");
-  }
-  res.status(200).json(result);*/
 };
 
 const updateStatusContact = async (req, res, next) => {
