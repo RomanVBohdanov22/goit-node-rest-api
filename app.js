@@ -23,14 +23,6 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-/*
-app.listen(3000, () => {
-  console.log("Server is running. Use our API on port: 3000");
-});*/
-
-/*const DB_HOST =
-  "mongodb+srv://<user>:<password>@atlascluster.3uloymf.mongodb.net/db-contacts?retryWrites=true&w=majority&appName=AtlasCluster"; */
-
 const { DB_HOST, PORT = 3000 } = process.env;
 console.log(DB_HOST);
 mongoose
